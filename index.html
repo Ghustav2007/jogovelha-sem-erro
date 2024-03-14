@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        @font-face {
+            font-family: font1;
+            src: url(/fonts/Minecrafter.Alt.ttf);
+        }
+        .board{
+            display: grid;
+            grid-template-columns: repeat(3, 270px);
+            grid-template-rows: repeat(3, 270px);
+            gap: 15px;
+            margin-left: 275px ;
+        }
+        .cell{
+            /* background-color: yellowgreen; */
+            background-image: url(https://i.pinimg.com/736x/0f/fa/e3/0ffae3941d35c380d3ce2eeff7ea6b8b.jpg);
+            padding-top: 79px;
+            border: 3px solid green;
+            align-items: center;
+            font-size: 84px;
+            cursor: pointer;
+            font-family: font1;
+            text-align: center;
+        }
+        h1{
+            font-family: font1;
+            font-size: 35px;
+            margin-bottom: 65px;
+            
+        }
+        footer{
+    font-family: font1;
+    font-size: 22px;
+    margin-top: 75px;
+    background-color: white;
+    padding: 3%;
+    
+  margin-left: -2%;
+  margin-right: -2%;
+  margin-bottom: -2%;
+    
+}
+body{
+    text-align: center;
+    background-color: aqua;
+
+}
+.img1{
+    width: 80px;
+    /* position: absolute;  */
+    right: 0;
+    margin-right: -75%;
+    margin-top: 50px;
+    background-color: green;
+    padding: 3%;
+} 
+.img1:hover{
+    background-color: black;
+}
+.img2:hover{
+    background-color: black;
+}
+
+
+
+.img2{
+    width: 80px;
+    /* position: absolute; */
+    left: 0;
+    background-color: green;
+    padding: 3%;
+}
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/2699/PNG/512/minecraft_logo_icon_168974.png">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha  </title>
+</head>
+
+
+<img class="img1" src="https://lh3.bunny.novaskin.me/AQT6-Ca7c7wF7BfKXQHWbbmFk5ETc8mmdRm1-y0Pl1agi5cvxXaFu1EMRpPE_5NB-ITWRD-6UNWYRGePKP0rQJg" alt="">
+<img class="img2" src="https://lh3.bunny.novaskin.me/AQT6-Ca7c7wF7BfKXQHWbbmFk5ETc8mmdRm1-y0Pl1agi5cvxXaFu1EMRpPE_5NB-ITWRD-6UNWYRGePKP0rQJg" alt="">
+
+
+
+
+
+</div>
+
+<body>
+    <h1>Jogo da Velha do Minecraft</h1>
+
+    <div class="board" id="board">
+        <div class="cell" onclick="cellClicked(0)"></div>
+        <div class="cell" onclick="cellClicked(1)"></div>
+        <div class="cell" onclick="cellClicked(2)"></div>
+        <div class="cell" onclick="cellClicked(3)"></div>
+        <div class="cell" onclick="cellClicked(4)"></div>
+        <div class="cell" onclick="cellClicked(5)"></div>
+        <div class="cell" onclick="cellClicked(6)"></div>
+        <div class="cell" onclick="cellClicked(7)"></div>
+        <div class="cell" onclick="cellClicked(8)"></div>
+    </div>
+
+
+
+    <script>
+        let currentPlayer = 'X';
+        let board = ['', '', '', '' ,'' ,'', '', '', ''];
+
+
+        function cellClicked(index) {
+            if (board[index] === ''){
+                board[index] = currentPlayer;
+                document.getElementById('board').children[index].innerText = currentPlayer;
+                checkWinner();
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+
+
+        function checkWinner() {
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+
+            for (let condition of winConditions) {
+                const [a, b, c] = condition;
+                if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
+                    alert (`JOGADOR ${board[a]} VENCEU!`);
+                    resetBoard();
+                    return;
+                }
+
+            }
+
+
+            if (!board.includes('')) {
+                alert('EMPATE!');
+                resetBoard();
+            }
+        }
+
+        function resetBoard() {
+            currentPlayer = 'X';
+            board = ['', '', '', '', '', '', '', '', ''];
+            for (let i = 0; i < 9; i++) {
+                document.getElementById('board').children[i].innerText = '';
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    <footer>Criado Por Gustavo Soares | Gustav</footer>
+      
+    
+</body>
+</html>
